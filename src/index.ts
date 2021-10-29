@@ -1,4 +1,4 @@
-
+import * as path from 'path';
 interface ConverterInterface {
   toBigInt(buf: Buffer, bigEndian?: boolean): bigint;
   fromBigInt(num: BigInt, buf: Buffer, bigEndian?: boolean): Buffer;
@@ -11,8 +11,7 @@ let converter: ConverterInterface;
 if (!process.browser) {
   try {
     // TODO: add arch-specific binaries as necessary
-    converter = require('node-gyp-build')(
-        `../prebuilds/${process.platform}-x64/node.napi`);
+    converter = require('node-gyp-build')(path.join(__dirname, `../`));
   } catch (e) {
     console.warn(
         'bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)');
