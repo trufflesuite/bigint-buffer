@@ -31,13 +31,6 @@ jobs:
       - name: prebuild binary files
         run: prebuildify --napi --strip
 
-      - run: mv -f ./prebuilds/linux-x64/node.napi.node ./prebuilds/linux-x64/bigint_buffer.node
-        if: startsWith(matrix.os, 'ubuntu')
-      - run: mv -f ./prebuilds/darwin-x64/node.napi.node ./prebuilds/darwin-x64/bigint_buffer.node
-        if: startsWith(matrix.os, 'macos')
-      - run: mv -Force ./prebuilds/win32-x64/node.napi.node ./prebuilds/win32-x64/bigint_buffer.node
-        if: startsWith(matrix.os, 'windows')
-
       - name: Upload prebuild-assets
         uses: actions/upload-artifact@v2
         with:
@@ -65,15 +58,15 @@ jobs:
         with:
           name: prebuilds-macos-latest-x64
 
-      - run: cp -rf linux-x64 binaries
-      - run: cp -rf win32-x64 binaries
-      - run: cp -rf darwin-x64 binaries
+      - run: cp -rf linux-x64 prebuilds
+      - run: cp -rf win32-x64 prebuilds
+      - run: cp -rf darwin-x64 prebuilds
 
       - name: configure Git
         run: |
           git config --global user.email "micaiahreid@gmail.com"
           git config --global user.name "Micaiah Reid"
 
-      - run: git add binaries
-      - run: git commit -m "[GitHub Actions] Updated binaries."
+      - run: git add prebuilds
+      - run: git commit -m "[GitHub Actions] Updated prebuilt binaries."
       - run: git push origin

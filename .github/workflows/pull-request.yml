@@ -28,13 +28,6 @@ jobs:
       - name: prebuild binary files
         run: prebuildify --napi --strip
 
-      - run: mv -f ./prebuilds/linux-x64/node.napi.node ./prebuilds/linux-x64/bigint_buffer.node
-        if: startsWith(matrix.os, 'ubuntu')
-      - run: mv -f ./prebuilds/darwin-x64/node.napi.node ./prebuilds/darwin-x64/bigint_buffer.node
-        if: startsWith(matrix.os, 'macos')
-      - run: mv -Force ./prebuilds/win32-x64/node.napi.node ./prebuilds/win32-x64/bigint_buffer.node
-        if: startsWith(matrix.os, 'windows')
-
       - name: Upload prebuild-assets
         uses: actions/upload-artifact@v2
         with:
@@ -56,11 +49,11 @@ jobs:
         with:
           name: prebuilds-${{ matrix.os }}-x64
 
-      - run: cp -rf linux-x64 binaries
+      - run: cp -rf linux-x64 prebuilds
         if: startsWith(matrix.os, 'ubuntu')
-      - run: cp -rf darwin-x64 binaries
+      - run: cp -rf darwin-x64 prebuilds
         if: startsWith(matrix.os, 'macos')
-      - run: cp -Recurse -Force win32-x64 binaries
+      - run: cp -Recurse -Force win32-x64 prebuilds
         if: startsWith(matrix.os, 'windows')
 
       - run: npm ci
