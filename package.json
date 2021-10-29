@@ -1,6 +1,6 @@
 {
   "name": "@trufflesuite/bigint-buffer",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "description": "bigint to buffer conversion with native support",
   "main": "dist/node.js",
   "browser": {
