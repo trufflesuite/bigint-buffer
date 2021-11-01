@@ -64,9 +64,10 @@ jobs:
 
       - name: configure Git
         run: |
-          git config --global user.email "micaiahreid@gmail.com"
-          git config --global user.name "Micaiah Reid"
+          git config --global user.name 'Robot'
+          git config --global user.email 'robot@trufflesuite.com'
+          git remote set-url origin https://robot:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
 
       - run: git add prebuilds
-      - run: git commit -m "[GitHub Actions] Updated prebuilt binaries."
+      - run: git diff --quiet && git diff --staged --quiet || git commit -am '[GitHub Actions] Updated prebuilt binaries.'
       - run: git push origin
