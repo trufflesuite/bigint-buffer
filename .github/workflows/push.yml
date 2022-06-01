@@ -23,10 +23,10 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: install node-gyp
-        run: npm install --global node-gyp@8.2.0
+        run: npm install --global node-gyp@9.0.0
 
       - name: install prebuildify
-        run: npm install --global prebuildify@4.2.1
+        run: npm install --global prebuildify@5.0.0
 
       - name: prebuild binary files
         run: prebuildify --napi --strip
