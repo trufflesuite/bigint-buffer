@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node: [14.x]
+        node: [18.2.0]
         os: [ubuntu-20.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
 
@@ -20,10 +20,10 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: install node-gyp
-        run: npm install --global node-gyp@8.2.0
+        run: npm install --global node-gyp@9.0.0
 
       - name: install prebuildify
-        run: npm install --global prebuildify@4.2.1
+        run: npm install --global prebuildify@5.0.0
 
       - name: prebuild binary files
         run: prebuildify --napi --strip
@@ -39,7 +39,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        node: [10.x, 11.x, 12.x, 13.x, 14.x, 15.x, 16.x]
+        node: [12.x, 14.x, 16.x, 18.x]
         os: [ubuntu-20.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
