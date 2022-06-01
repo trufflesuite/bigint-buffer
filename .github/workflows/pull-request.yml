@@ -39,7 +39,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        node: [10.x, 11.x, 12.x, 13.x, 14.x, 15.x, 16.x]
+        node: [12.x, 14.x, 16.x]
         os: [ubuntu-20.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
