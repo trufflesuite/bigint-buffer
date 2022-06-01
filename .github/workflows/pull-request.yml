@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node: [14.x]
+        node: [18.2.0]
         os: [ubuntu-20.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
 
